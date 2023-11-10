@@ -52,7 +52,6 @@ const Build = ({ setUri }) => {
         <p
           className="cursor-pointer"
           onClick={() => {
-            // This is a hacky way to force a re-render
             const randHair = Math.floor(Math.random() * images.hair.length);
             setHair(images.hair[randHair]);
             setClickedHair(`Hair${randHair + 1}`);
