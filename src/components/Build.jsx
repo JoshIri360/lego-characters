@@ -34,7 +34,7 @@ const Build = ({ setUri }) => {
 
   return (
     <div className="flex flex-col items-center justify-between h-[80vh]">
-      <div className="mt-10 flex items-center gap-5">
+      <div className="mt-10 flex-col md:flex-row flex items-center gap-5">
         <MergeImages
           images={[
             { src: background, x: 0, y: 0 },

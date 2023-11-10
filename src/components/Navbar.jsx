@@ -55,9 +55,6 @@ const Navbar = ({ uri }) => {
       <div className="flex-none hidden md:block">
         <ul className="text-2xl menu menu-horizontal px-1">
           <li>
-            <a className="uppercase">Random</a>
-          </li>
-          <li>
             <a
               className="uppercase"
               onClick={() => {
