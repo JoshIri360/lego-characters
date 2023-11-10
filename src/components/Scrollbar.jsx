@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import { motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 
-const Scrollbar = ({ images }) => {
+const Scrollbar = ({ images, setImage, clickedItems, setClickedItems }) => {
   const [width, setWidth] = useState(0);
   const carousel = useRef();
 
@@ -15,52 +15,84 @@ const Scrollbar = ({ images }) => {
     imageNames.push(imageName);
   });
 
-  //   console.log(imageNames);
+  const handleRandomClick = () => {
+    const randomPart = images[Math.floor(Math.random() * images.length)];
+    setClickedItems(imageNames[images.indexOf(randomPart)]);
+    console.log(imageNames[images.indexOf(randomPart)]);
+    setImage(randomPart);
+  };
 
   const handleClick = (e) => {
-    console.log(
-      e.target.src.split("/")[e.target.src.split("/").length - 1].split(".")[0]
-    );
+    const imgElement = e.target.children[0] ? e.target.children[0] : e.target;
+
+    const bodyPart = imgElement.src.split("/")[
+      // eslint-disable-next-line no-unexpected-multiline
+      imgElement.src.split("/").length - 1
+    ].split(".")[0];
+
+    setImage(imgElement.src.split("/").slice(-5).join("/"));
+
+    setClickedItems(bodyPart);
   };
 
   useEffect(() => {
     setWidth(carousel.current.scrollWidth - carousel.current.offsetWidth);
+    setClickedItems(imageNames[0]);
+    handleRandomClick(images, setImage);
   }, []);
 
   return (
-    <motion.div
-      ref={carousel}
-      className="top-carousel flex cursor-grab overflow-hidden min-w-[14rem] md:max-w-md rounded-md bg-primary-content"
-    >
+    <div className="relative">
       <motion.div
-        className="inner-carousel flex bg-secondary-content p-4 gap-4"
-        drag="x"
-        dragConstraints={{ right: 0, left: -width }}
-        whileTap={"grabbing"}
+        ref={carousel}
+        className="top-carousel flex cursor-grab overflow-hidden min-w-[14rem] max-w-[20rem] md:max-w-md rounded-md bg-primary-content focus:outline-none"
       >
-        {images.map((image, index) => (
-          <motion.div
-            className={`item rounded-md min-h-[5rem] w-20 max-w flex items-center justify-center bg-white`}
-            key={index}
-          >
-            <img
-              className="rounded-md cursor-pointer w-16"
-              draggable="false"
+        <motion.div
+          className="inner-carousel flex bg-secondary-content p-4 gap-4 focus:outline-none"
+          drag="x"
+          dragConstraints={{ right: 0, left: -width }}
+          dragTransition={{
+            power: 0.5,
+            // Snap calculated target to nearest 50 pixels on release
+            modifyTarget: (target) => Math.round(target / 96) * 96,
+            bounceDamping: 60,
+            timeConstant: 400,
+          }}
+          whileTap={"grabbing"}
+        >
+          {images.map((image, index) => (
+            <motion.div
+              className={`item rounded-md min-h-[5rem] w-20 flex cursor-pointer items-center justify-center bg-white`}
+              key={index}
+              style={{
+                boxShadow:
+                  clickedItems === imageNames[index]
+                    ? "0 0 0 3px #fff, 0 0 0 6px #000"
+                    : "none",
+              }}
               onClick={(e) => {
                 handleClick(e);
               }}
-              src={image}
-              alt="lego"
-            />
-          </motion.div>
-        ))}
+            >
+              <img
+                className="rounded-md w-16"
+                draggable="false"
+                src={image}
+                alt="lego"
+              />
+            </motion.div>
+          ))}
+        </motion.div>
       </motion.div>
-    </motion.div>
+    </div>
   );
 };
 
 Scrollbar.propTypes = {
   images: PropTypes.array.isRequired,
+  setImage: PropTypes.func.isRequired,
+  clickedItems: PropTypes.string.isRequired,
+  setClickedItems: PropTypes.func.isRequired,
 };
 
 export default Scrollbar;

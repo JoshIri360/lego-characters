@@ -5,7 +5,6 @@ const config = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
     fontFamily: {
-      sans: ["Inter", "sans-serif"],
       oswald: ["Oswald", "sans-serif"],
     },
     extend: {},
