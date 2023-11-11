@@ -9,10 +9,10 @@ import brows4 from "../assets/images/brows/Brow4.png";
 import brows5 from "../assets/images/brows/Brow5.png";
 import brows6 from "../assets/images/brows/Brow6.png";
 
+import eyes1 from "../assets/images/eyes/Eye1.png";
 import eyes2 from "../assets/images/eyes/Eye2.png";
 import eyes3 from "../assets/images/eyes/Eye3.png";
 import eyes4 from "../assets/images/eyes/Eye4.png";
-import eyes5 from "../assets/images/eyes/Eye5.png";
 
 import hair1 from "../assets/images/hair/Hair1.png";
 import hair2 from "../assets/images/hair/Hair2.png";
@@ -51,7 +51,7 @@ import shirt6 from "../assets/images/shirt/Shirt6.png";
 const images = {
   background: [background1, background2, background3],
   brows: [brows1, brows2, brows3, brows4, brows5, brows6],
-  eyes: [eyes2, eyes3, eyes4, eyes5],
+  eyes: [eyes1, eyes2, eyes3, eyes4],
   hair: [
     hair6,
     hair1,
