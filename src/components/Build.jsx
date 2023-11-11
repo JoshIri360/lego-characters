@@ -4,7 +4,6 @@ import images from "./Images";
 import Scrollbar from "./Scrollbar";
 import { useEffect, useRef, useState } from "react";
 import MergeImages from "./MergeImages";
-import base from "../assets/images/base/Base.png";
 
 const Build = ({ setUri }) => {
   const [width, setWidth] = useState(0);
@@ -38,7 +37,7 @@ const Build = ({ setUri }) => {
         <MergeImages
           images={[
             { src: background, x: 0, y: 0 },
-            { src: base, x: 106.125, y: 97.7575 },
+            { src: "/images/base/Base.png", x: 106.125, y: 97.7575 },
             { src: shirt, x: 54.375, y: 222.9075 },
             { src: hair, x: 69.03, y: 43.16 },
             { src: brows, x: 126.1125, y: 132.5 },

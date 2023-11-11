@@ -1,5 +1,4 @@
 import PropTypes from "prop-types";
-import Logo from "../assets/images/Logo.png";
 
 const Navbar = ({ uri }) => {
   function downloadURI(uri, name) {
@@ -14,7 +13,12 @@ const Navbar = ({ uri }) => {
   return (
     <div className="navbar bg-base-100">
       <div className="flex-1">
-        <img src={Logo} alt="logo" className="w-10 h-10" draggable="false" />
+        <img
+          src="/images/Logo.png"
+          alt="logo"
+          className="w-10 h-10"
+          draggable="false"
+        />
       </div>
       <div className="dropdown md:hidden">
         <label tabIndex={0} className="btn btn-ghost btn-circle">
