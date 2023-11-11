@@ -8,6 +8,7 @@ const Scrollbar = ({ images, setImage, clickedItems, setClickedItems }) => {
 
   const imageNames = [];
 
+  //
   images.map((imagePath) => {
     const pathSegments = imagePath.split("/");
     const imageNameWithExtension = pathSegments[pathSegments.length - 1];
@@ -18,7 +19,7 @@ const Scrollbar = ({ images, setImage, clickedItems, setClickedItems }) => {
   const handleRandomClick = () => {
     const randomPart = images[Math.floor(Math.random() * images.length)];
     setClickedItems(imageNames[images.indexOf(randomPart)]);
-    console.log(imageNames[images.indexOf(randomPart)]);
+    // console.log(imageNames[images.indexOf(randomPart)]);
     setImage(randomPart);
   };
 
@@ -30,7 +31,8 @@ const Scrollbar = ({ images, setImage, clickedItems, setClickedItems }) => {
       imgElement.src.split("/").length - 1
     ].split(".")[0];
 
-    setImage(imgElement.src.split("/").slice(-5).join("/"));
+    console.log(imgElement.src);
+    setImage(imgElement.src);
 
     setClickedItems(bodyPart);
   };
@@ -45,7 +47,7 @@ const Scrollbar = ({ images, setImage, clickedItems, setClickedItems }) => {
     <div className="relative">
       <motion.div
         ref={carousel}
-        className="top-carousel flex cursor-grab overflow-hidden min-w-[14rem] max-w-[20rem] md:max-w-md rounded-md bg-primary-content focus:outline-none"
+        className="top-carousel flex cursor-grab overflow-hidden min-w-[14rem] max-w-[14rem] md:max-w-md rounded-md bg-primary-content focus:outline-none"
       >
         <motion.div
           className="inner-carousel flex bg-secondary-content p-4 gap-4 focus:outline-none"
@@ -91,7 +93,7 @@ const Scrollbar = ({ images, setImage, clickedItems, setClickedItems }) => {
 Scrollbar.propTypes = {
   images: PropTypes.array.isRequired,
   setImage: PropTypes.func.isRequired,
-  clickedItems: PropTypes.string.isRequired,
+  clickedItems: PropTypes.string,
   setClickedItems: PropTypes.func.isRequired,
 };
 

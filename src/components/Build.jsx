@@ -50,7 +50,7 @@ const Build = ({ setUri }) => {
           setUri={setUri}
         />
         <p
-          className="cursor-pointer"
+          className="cursor-pointer select-none text-2xl font-bold hover:bg-primary-content p-3 rounded-lg transition-colors"
           onClick={() => {
             const randHair = Math.floor(Math.random() * images.hair.length);
             setHair(images.hair[randHair]);
@@ -93,11 +93,11 @@ const Build = ({ setUri }) => {
         </p>
       </div>
       <motion.div
-        className="top-carousel flex cursor-grab overflow-hidden w-screen"
+        className="top-carousel flex cursor-grab overflow-hidden w-screen z-20"
         ref={carousel}
       >
         <motion.div
-          className="inner-carousel flex p-4 gap-16 focus:outline-none"
+          className="inner-carousel flex p-4 gap-24 focus:outline-none z-10"
           drag="x"
           dragConstraints={{ right: 0, left: -width }}
           whileTap={"grabbing"}
